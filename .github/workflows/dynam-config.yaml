@@ -39,9 +39,11 @@ jobs:
         
   read_config:
     runs-on: ubuntu-22.04
+    needs: create_config
     steps:
       - name: Check out code
         uses: actions/checkout@v3
+
       - name: Download config
         uses: actions/download-artifact@v3
         with:
