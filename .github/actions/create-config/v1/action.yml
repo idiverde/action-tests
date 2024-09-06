@@ -8,6 +8,7 @@ runs:
       uses: actions/checkout@v3
 
     - name: replace addresses
+      shell: bash
       run: |
         echo "replacing"
         sed -i -e "s/{APP1_EXTERNAL_ADDRESS}/${{ github.event.inputs.APP_1_EXTERNAL_ADDRESS || env.DEFAULT_APP_1_EXTERNAL_ADDRESS }}/g" \
