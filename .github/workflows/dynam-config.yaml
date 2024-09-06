@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Create configs for v1
-        if: ${{ inputs.VERSION == 'v1' || env.DEFAULT_VERSION }}
+        if: ${{ inputs.VERSION == 'v1' || env.DEFAULT_VERSION == 'v1' && github.event_name == 'push' }}
         uses: ./.github/actions/create-config/v1
         
       - name: Create configs for v2
