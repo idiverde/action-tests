@@ -21,5 +21,5 @@ runs:
       with:
         name: configs
         path: |
-          ./generated_configs/config1.yml
-          ./generated_configs/config2.yml
+          ./configs/config1.yml
+          ./configs/config2.yml
