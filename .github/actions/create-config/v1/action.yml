@@ -19,7 +19,7 @@ runs:
     - name: Copy config to a different path
       shell: bash
       run: |
-        mkdir ./generated/
+        mkdir -p ./dir/generated/
         cp ./configs/* ./dir/generated/
 
     - name: Upload config1.yml
