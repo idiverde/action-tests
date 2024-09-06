@@ -13,7 +13,7 @@ runs:
         echo "replacing"
         sed -i -e "s/{APP1_EXTERNAL_ADDRESS}/hostname/g" \
         -e "s/{APP2_INTERNAL_ADDRESS}/hostname/g" \
-        ./configs/config1.yml
+        ./configs/dummy-config1.yml
 
     - name: Upload config1.yml
       uses: actions/upload-artifact@v3
