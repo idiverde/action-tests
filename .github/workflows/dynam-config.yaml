@@ -32,5 +32,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: config-yml
-          path: config.yml
+          path: config1.yml
 
