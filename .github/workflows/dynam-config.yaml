@@ -40,10 +40,12 @@ jobs:
       - name: Download config
         uses: actions/download-artifact@v3
         with:
-          name: config1-yml
+          name: configs
 
       - name: Cat config
-        run: cat ./configs/config1.yml
+        run: |
+          cat ./configs/config1.yml
+          cat ./configs/config2.yml
 
 
 

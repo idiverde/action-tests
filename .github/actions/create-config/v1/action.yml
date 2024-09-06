@@ -14,9 +14,12 @@ runs:
         sed -i -e "s/{APP1_EXTERNAL_ADDRESS}/${{ github.event.inputs.APP_1_EXTERNAL_ADDRESS || env.DEFAULT_APP_1_EXTERNAL_ADDRESS }}/g" \
         -e "s/{APP2_INTERNAL_ADDRESS}/${{ github.event.inputs.APP_2_INTERNAL_ADDRESS || env.DEFAULT_APP_2_INTERNAL_ADDRESS }}/g" \
         ./configs/config1.yml
+        sed -i -e "s/{APP1_NAME}/test/g" ./configs/config2.yml
 
     - name: Upload config1.yml
       uses: actions/upload-artifact@v3
       with:
-        name: config1-yml
-        path: ./configs/config1.yml
+        name: configs
+        path: |
+          ./configs/config1.yml
+          ./configs/config2.yml
