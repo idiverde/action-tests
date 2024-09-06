@@ -5,18 +5,22 @@ on:
     inputs:
       APP_1_EXTERNAL_ADDRESS:
         description: "IP of FQDN"
-        required: false
+        required: true
         default: "127.0.0.1"
       APP_2_INTERNAL_ADDRESS:
         description: "Internal IP"
-        required: false
+        required: true
         default: "172.0.0.1"
-        
+      VERSION:
+        description: "version of deploy"
+        required: true
+        default: 
   push:
 
 env:
   DEFAULT_APP_1_EXTERNAL_ADDRESS: "127.0.0.1"
   DEFAULT_APP_2_INTERNAL_ADDRESS: "172.0.0.1"
+  DEFAULT_VERSION: "v1"
 
 jobs:
   create_config:
@@ -25,16 +29,14 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: replace addresses
-        run: |
-          echo "replacing"
-          sed -i -e "s/{APP1_EXTERNAL_ADDRESS}/${{ github.event.inputs.APP_1_EXTERNAL_ADDRESS || env.DEFAULT_APP_1_EXTERNAL_ADDRESS }}/g" \
-          -e "s/{APP2_INTERNAL_ADDRESS}/${{ github.event.inputs.APP_2_INTERNAL_ADDRESS || env.DEFAULT_APP_2_INTERNAL_ADDRESS }}/g" \
-          ./configs/config1.yml
+      - name: Create configs for v1
+        if: ${{ inputs.VERSION == 'v1' }}
+        uses: ./.github/actions/create-config/v1
+        
+      - name: Create configs for v2
+        if: ${{ inputs.VERSION == 'v2' }}
+        uses: ./.github/actions/create-config/v2
+        
 
-      - name: Upload config.yml
-        uses: actions/upload-artifact@v3
-        with:
-          name: config-yml
-          path: ./configs/config1.yml
+
 

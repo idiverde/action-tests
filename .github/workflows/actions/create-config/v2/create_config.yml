@@ -1,0 +1,21 @@
+name: "Create configs and upload"
+
+
+runs:
+  using: "composite"
+  steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: replace addresses
+      run: |
+        echo "replacing"
+        sed -i -e "s/{APP1_EXTERNAL_ADDRESS}/hostname/g" \
+        -e "s/{APP2_INTERNAL_ADDRESS}/hostname/g" \
+        ./configs/config1.yml
+
+    - name: Upload config.yml
+      uses: actions/upload-artifact@v3
+      with:
+        name: config-yml
+        path: ./configs/config1.yml
