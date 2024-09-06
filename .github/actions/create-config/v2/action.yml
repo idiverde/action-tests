@@ -15,8 +15,8 @@ runs:
         -e "s/{APP2_INTERNAL_ADDRESS}/hostname/g" \
         ./configs/dummy-config1.yml
 
-    - name: Upload config1.yml
+    - name: Upload config.yml
       uses: actions/upload-artifact@v3
       with:
-        name: config1-yml
+        name: config-yml
         path: ./configs/config1.yml
