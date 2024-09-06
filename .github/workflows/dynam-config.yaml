@@ -44,8 +44,8 @@ jobs:
 
       - name: Cat config
         run: |
-          cat ./configs/config1.yml
-          cat ./configs/config2.yml
+          cat ./generated/config1.yml
+          cat ./generated/config2.yml
 
 
 

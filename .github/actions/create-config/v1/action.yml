@@ -16,10 +16,16 @@ runs:
         ./configs/config1.yml
         sed -i -e "s/{APP1_NAME}/test/g" ./configs/config2.yml
 
+    - name: Copy config to a different path
+      run: cp ./configs/* ./generated/
+
+
+
+
     - name: Upload config1.yml
       uses: actions/upload-artifact@v3
       with:
         name: configs
         path: |
-          ./configs/config1.yml
-          ./configs/config2.yml
+          ./generated/config1.yml
+          ./generated/config2.yml
