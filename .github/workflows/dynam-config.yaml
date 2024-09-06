@@ -51,8 +51,9 @@ jobs:
 
       - name: Cat config
         run: |
-          cat ./generated/config1.yml
-          cat ./generated/config2.yml
+          cat config1.yml
+          cat ./config2.yml
+        continue-on-error: true
 
 
 
