@@ -1,0 +1,31 @@
+name: Dynamically creating files
+
+on: 
+  workflow_dispatch:
+    inputs:
+      APP_1_EXTERNAL_ADDRESS:
+        description: "IP of FQDN"
+        required: false
+        default: "127.0.0.1"
+      APP_2_INTERNAL_ADDRESS:
+        description: "Internal IP"
+        required: false
+        default: "172.0.0.1"
+        
+  push:
+
+jobs:
+  create_config:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: replace addresses
+        run: |
+          echo "replacing"
+          sed -e 's/{APP1_EXTERNAL_ADDRESS}/${{ github.event.inputs.APP_1_EXTERNAL_ADDRESS }}/g'  \
+          -e 's/{APP2_INTERNAL_ADDRESS}/${{ github.event.inputs.APP_2_INTERNAL_ADDRESS }}/g'      \
+          ./configs/config1.yml
+          cat ./configs/config1.yml
+
