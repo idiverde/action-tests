@@ -24,8 +24,13 @@ jobs:
       - name: replace addresses
         run: |
           echo "replacing"
-          sed -e 's/{APP1_EXTERNAL_ADDRESS}/${{ github.event.inputs.APP_1_EXTERNAL_ADDRESS }}/g'  \
-          -e 's/{APP2_INTERNAL_ADDRESS}/${{ github.event.inputs.APP_2_INTERNAL_ADDRESS }}/g'      \
+          sed -i -e "s/{APP1_EXTERNAL_ADDRESS}/${{ github.event.inputs.APP_1_EXTERNAL_ADDRESS }}/g" \
+          -e "s/{APP2_INTERNAL_ADDRESS}/${{ github.event.inputs.APP_2_INTERNAL_ADDRESS }}/g" \
           ./configs/config1.yml
-          cat ./configs/config1.yml
+
+      - name: Upload config.yml
+        uses: actions/upload-artifact@v3
+        with:
+          name: config-yml
+          path: config.yml
 
