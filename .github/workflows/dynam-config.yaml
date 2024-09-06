@@ -37,6 +37,9 @@ jobs:
         if: ${{ inputs.VERSION == 'v2' }}
         uses: ./.github/actions/create-config/v2
         
+  read_config:
+    runs-on: ubuntu-22.04
+    steps:
       - name: Download config
         uses: actions/download-artifact@v3
         with:
