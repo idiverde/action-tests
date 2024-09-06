@@ -17,10 +17,10 @@ runs:
         sed -i -e "s/{APP1_NAME}/test/g" ./configs/config2.yml
 
     - name: Copy config to a different path
-      run: cp ./configs/* ./generated/
-
-
-
+      shell: bash
+      run: |
+        mkdir ./generated/
+        cp ./configs/* ./generated/
 
     - name: Upload config1.yml
       uses: actions/upload-artifact@v3
