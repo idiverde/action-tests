@@ -20,11 +20,11 @@ runs:
       shell: bash
       run: |
         mkdir ./generated/
-        cp ./configs/* ./generated/
+        cp ./configs/* ./dir/generated/
 
     - name: Upload config1.yml
       uses: actions/upload-artifact@v3
       with:
         name: configs
         path: |
-          ./generated/
+          ./dir/generated/
