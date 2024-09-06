@@ -37,6 +37,13 @@ jobs:
         if: ${{ inputs.VERSION == 'v2' }}
         uses: ./.github/actions/create-config/v2
         
+      - name: Download config
+        uses: actions/download-artifact@v3
+        with:
+          name: config1-yml
+
+      - name: Cat config
+        run: cat ./configs/config1.yml
 
 
 

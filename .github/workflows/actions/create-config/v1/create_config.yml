@@ -14,8 +14,8 @@ runs:
         -e "s/{APP2_INTERNAL_ADDRESS}/${{ github.event.inputs.APP_2_INTERNAL_ADDRESS || env.DEFAULT_APP_2_INTERNAL_ADDRESS }}/g" \
         ./configs/config1.yml
 
-    - name: Upload config.yml
+    - name: Upload config1.yml
       uses: actions/upload-artifact@v3
       with:
-        name: config-yml
+        name: config1-yml
         path: ./configs/config1.yml
