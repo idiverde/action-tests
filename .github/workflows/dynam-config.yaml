@@ -14,6 +14,10 @@ on:
         
   push:
 
+env:
+  DEFAULT_APP_1_EXTERNAL_ADDRESS: "127.0.0.1"
+  DEFAULT_APP_2_INTERNAL_ADDRESS: "172.0.0.1"
+
 jobs:
   create_config:
     runs-on: ubuntu-22.04
@@ -24,8 +28,8 @@ jobs:
       - name: replace addresses
         run: |
           echo "replacing"
-          sed -i -e "s/{APP1_EXTERNAL_ADDRESS}/${{ github.event.inputs.APP_1_EXTERNAL_ADDRESS }}/g" \
-          -e "s/{APP2_INTERNAL_ADDRESS}/${{ github.event.inputs.APP_2_INTERNAL_ADDRESS }}/g" \
+          sed -i -e "s/{APP1_EXTERNAL_ADDRESS}/${{ github.event.inputs.APP_1_EXTERNAL_ADDRESS || env.DEFAULT_APP_1_EXTERNAL_ADDRESS }}/g" \
+          -e "s/{APP2_INTERNAL_ADDRESS}/${{ github.event.inputs.APP_2_INTERNAL_ADDRESS || env.DEFAULT_APP_2_INTERNAL_ADDRESS }}/g" \
           ./configs/config1.yml
 
       - name: Upload config.yml
